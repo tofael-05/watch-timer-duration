@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Card from '../Card/Card';
 
-const Home = () => {
+const Home = ({handleWatchTime}) => {
     const [movies, setMovies] = useState([])
 
     useEffect(() => {
@@ -12,7 +12,7 @@ const Home = () => {
     return (
         <div className="grid grid-cols-3 gap-6">
             {
-            movies.map((movie) => <Card movie={movie}></Card>)
+            movies.map((movie) => <Card handleWatchTime={handleWatchTime} movie={movie}></Card>)
         }
         </div>
     );

@@ -8,14 +8,28 @@ import SingleCard from './components/SingleCard/SingleCard'
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [watchTime, setWatchTime] = useState("");
+  const handleWatchTime = (time) => {
+    const priviousWatchTime = JSON.parse(localStorage.getItem("watchTime"));
+    if(priviousWatchTime) {
+      const sum = priviousWatchTime + time;
+      localStorage.setItem("watchTime", sum)
+      setWatchTime(sum)
+
+    }
+    else{
+      localStorage.setItem("watchTime", time)
+      setWatchTime(time)
+    }
+
+  }
 
   return (
     <div className="App">
       <Header></Header>
       <div className=" w-[1200px] mx-auto mt-4 flex justify-between">
-        <Home></Home>
-        <SingleCard></SingleCard>
+        <Home handleWatchTime={handleWatchTime}></Home>
+        <SingleCard watchTime={watchTime}></SingleCard>
         <div>
 
         </div>
